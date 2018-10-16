@@ -1,14 +1,14 @@
-# MODULE NAME
+# DGI Batch Queue ID Fixer
 
 ## Introduction
 
-DESCRIPTION
+Fixes an issue where batches triggered within an already existing batch set can
+lead to unexpected behavior as the IDs in the DrupalQueue are not unique.
 
 ## Requirements
 
 This module requires the following modules/libraries:
 
-* [Islandora](https://github.com/islandora/islandora)
 * [Tuque](https://github.com/islandora/tuque)
 
 ## Installation
