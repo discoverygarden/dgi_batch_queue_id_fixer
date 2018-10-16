@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Helper module to get around a bug in Drupal core's batch implementation.
+ */
+
+/**
+ * Implements hook_batch_alter().
+ */
+function dgi_batch_queue_id_fixer_batch_alter(&$batch) {
+  $queue_id_fixer = new DgiBatchQueueIdFixerUuidGenerator();
+  foreach ($batch['sets'] as &$set) {
+    if (isset($set['operations']) && !isset($set['queue'])) {
+      $set['queue']['name'] = $queue_id_fixer->generateUuid();
+      // XXX: Drush sets progressive after the alter, as such force it to be
+      // used as a BatchQueue when drupal_is_cli.
+      $set['queue']['class'] = ((isset($batch['progressive']) && $batch['progressive']) || drupal_is_cli()) ? 'BatchQueue' : 'BatchMemoryQueue';
+    }
+  }
+}

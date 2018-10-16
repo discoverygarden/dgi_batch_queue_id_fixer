@@ -1,0 +1,6 @@
+name = DGI Batch Queue ID Fixer
+description = "Circumvents a Drupal core bug with naming of IDs for queues in conjunction with batch processing."
+version = 7.x-dev
+core = 7.x
+php = 5.3
+files[] = includes/DgiBatchQueueIdFixerUuidGenerator.class.inc
